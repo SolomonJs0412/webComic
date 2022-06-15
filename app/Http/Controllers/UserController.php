@@ -14,7 +14,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-  
+
 
     /**
      * Show the form for creating a new resource.
@@ -125,8 +125,8 @@ class UserController extends Controller
         $data = $request->all();
         $user = User::find($id);
         $user->syncRoles($data['role']);
-        // $user->removeRole($data['role']);
-        // $user->assignRole($data['role']);
+        $user->removeRole($data['role']);
+        $user->assignRole($data['role']);
         return redirect()->back()->with('status','Thêm vai trò cho user thành công');
     }
 }

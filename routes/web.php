@@ -45,7 +45,7 @@ Route::get('/truyen-tranh/{slug}', [IndexController::class,'truyentranh']);
 Route::get('/tag/{tag}', [IndexController::class,'tag']);
 Route::post('/show-tranh', [IndexController::class,'show_tranh']);
 Route::post('/autocomplete-ajax',[IndexController::class,'autocomplete_ajax']);
-Route::post('/tim-kiem', [IndexController::class,'timkiem']);
+Route::get('/tim-kiem', [IndexController::class,'timkiem']);
 Route::post('/truyennoibat', [TruyenController::class,'truyennoibat']);
 Route::post('/tabs-danhmuc', [IndexController::class,'tabs_danhmuc']);
 Route::get('/kytu/{kytu}', [IndexController::class,'kytu']);
@@ -56,10 +56,10 @@ Auth::routes();
 //   'register' => false, // Registration Routes...
 //   'reset' => false, // Password Reset Routes...
 //   'verify' => false, // Email Verification Routes...
-  
+
 // ]);
 Route::group(['middleware' => ['auth']], function() {
-	
+
 	Route::resource('/danhmuc', DanhmucController::class);
 	Route::resource('/truyen', TruyenController::class);
 	Route::resource('/sach', SachController::class);
@@ -88,16 +88,16 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 
 Route::get('/storage-link', function(){
     return Artisan::call('storage:link');
-    
+
 });
 Route::get('/create-sitemap', function(){
     return Artisan::call('sitemap:create');
-   
+
 });
 Route::get('/custom_error', function(){
     return Artisan::call('php artisan vendor:publish --tag=laravel-errors');
-  
+
 });
 
-Route::get('/assignRole/{id}', [HomeController::class, 'assignRole']);
-Route::post('/insert_roles/{id}', [HomeController::class, 'insert_roles']);
+Route::get('/assignRole/{id}', [UserController::class, 'assignRole']);
+Route::post('/insert_roles/{id}', [UserController::class, 'insert_roles']);

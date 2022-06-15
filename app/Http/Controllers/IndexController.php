@@ -28,7 +28,7 @@ class IndexController extends Controller
         $link_icon = url('public/uploads/logo/'.$info->logo);
         //end seo
         $theloai = Theloai::orderBy('id','DESC')->get();
-       
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
 
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
@@ -88,7 +88,7 @@ class IndexController extends Controller
                           -webkit-column-gap: 20px;
                           column-count: 3;
                           column-gap: 20px;">
-   
+
                         <li><a target="_blank" href="'.url('xem-truyen/'.$value->slug_truyen).'">'.$value->tentruyen.'</a></li>
 
                     </ul>
@@ -110,7 +110,7 @@ class IndexController extends Controller
         $link_icon = url('public/uploads/logo/'.$info->logo);
         //end seo
     	$theloai = Theloai::orderBy('id','DESC')->get();
-       
+
     	$slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
 
     	$danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
@@ -128,7 +128,7 @@ class IndexController extends Controller
         $link_icon = url('public/uploads/logo/'.$info->logo);
         //end seo
         $theloai = Theloai::orderBy('id','DESC')->get();
-       
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
 
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
@@ -147,7 +147,7 @@ class IndexController extends Controller
 
         echo json_encode($output);
 
-    
+
     }
     public function truyentranh(){
         $info = Info::find(1);
@@ -172,12 +172,12 @@ class IndexController extends Controller
 
     public function danhmuc($slug){
         $info = Info::find(1);
-        
+
 
     	$theloai = Theloai::orderBy('id','DESC')->get();
     	$danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
 
-    	
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
 
     	$danhmuc_id = DanhmucTruyen::where('slug_danhmuc',$slug)->first();
@@ -188,7 +188,7 @@ class IndexController extends Controller
             $nhiutruyen[] = $danh->id;
         }
         // dd($danhmuc);
-       
+
         //seo
         $meta_desc = $danhmuc_id->mota;
         $meta_keywords = $danhmuc_id->tukhoa;
@@ -196,7 +196,7 @@ class IndexController extends Controller
         $og_image = url('public/uploads/danhmuc/'.$danhmuc_id->hinhanh);
          $link_icon = url('public/uploads/danhmuc/'.$danhmuc_id->hinhanh);
         //end seo
-        
+
         $title = $danhmuc_id->tendanhmuc;
 
     	$tendanhmuc = $danhmuc_id->tendanhmuc;
@@ -209,7 +209,7 @@ class IndexController extends Controller
         $info = Info::find(1);
     	$theloai = Theloai::orderBy('id','DESC')->get();
     	$danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
-    	
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
 
     	$theloai_id = Theloai::where('slug_theloai',$slug)->first();
@@ -237,7 +237,7 @@ class IndexController extends Controller
      public function xemtruyen($slug){
         $info = Info::find(1);
 
-     	
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
     	$theloai = Theloai::orderBy('id','DESC')->get();
      	$danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
@@ -263,8 +263,8 @@ class IndexController extends Controller
         $title = $truyen->tentruyen;
 
      	$chapter = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->id)->get();
-        
-        
+
+
      	$chapter_dau = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->id)->first();
          $chapter_moinhat = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->id)->first();
      	$cungdanhmuc = DanhmucTruyen::with('nhieutruyen')->where('id',$nhiutruyen)->take(16)->get();
@@ -278,18 +278,18 @@ class IndexController extends Controller
     }
     public function xemchapter($slug_truyen,$slug){
         $info = Info::find(1);
-    	
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
     	$theloai = Theloai::orderBy('id','DESC')->get();
     	$danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
 
-		
+
     	$truyen = Chapter::where('slug_chapter',$slug)->first();
 
 		//breadcrumb
 		$truyen_breadcrumb = Truyen::with('danhmuctruyen','theloai')->where('id',$truyen->truyen_id)->first();
-		//end breadcrumb	
-		
+		//end breadcrumb
+
     	$chapter = Chapter::with('truyen')->where('slug_chapter',$slug)->where('truyen_id',$truyen->truyen_id)->first();
 
         $title = $chapter->tieude;
@@ -307,26 +307,26 @@ class IndexController extends Controller
 
     	$max_id =  Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','DESC')->first();
     	$min_id =  Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','ASC')->first();
-    	
+
     	$previous_chapter = Chapter::where('truyen_id',$truyen->truyen_id)->where('id','<',$chapter->id)->max('slug_chapter');
 
     	return view('pages.chapter')->with(compact('danhmuc','chapter','all_chapter','next_chapter','previous_chapter','max_id','min_id','theloai','truyen_breadcrumb','slide_truyen','info','title','meta_desc','meta_keywords','url_canonical','og_image','link_icon'));
     }
     public function xemtruyentranh($slug_truyen,$slug){
         $info = Info::find(1);
-        
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
 
         $theloai = Theloai::orderBy('id','DESC')->get();
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
 
-        
+
         $truyen = Chapter::where('slug_chapter',$slug)->first();
 
         //breadcrumb
         $truyen_breadcrumb = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->where('id',$truyen->truyen_id)->first();
-        //end breadcrumb    
-        
+        //end breadcrumb
+
         $chapter = Chapter::with('truyen')->where('slug_chapter',$slug)->where('truyen_id',$truyen->truyen_id)->first();
 
         $title = $chapter->tieude;
@@ -343,9 +343,9 @@ class IndexController extends Controller
 
         $max_id =  Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','DESC')->first();
         $min_id =  Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','ASC')->first();
-        
+
         $previous_chapter = Chapter::where('truyen_id',$truyen->truyen_id)->where('id','<',$chapter->id)->max('slug_chapter');
-      
+
 
         return view('pages.truyentranh.xemtruyen')->with(compact('danhmuc','chapter','all_chapter','next_chapter','previous_chapter','max_id','min_id','theloai','truyen_breadcrumb','slide_truyen','info','title','meta_desc','meta_keywords','url_canonical','og_image','link_icon'));
     }
@@ -373,7 +373,8 @@ class IndexController extends Controller
         echo $output;
     }
     public function timkiem(Request $request){
-        $data = $request->all();
+        // $data = $request->all();
+        $tukhoa = $_GET['tukhoa'];
         $info = Info::find(1);
         $title = 'Tìm kiếm sách truyện';
         //seo
@@ -383,13 +384,13 @@ class IndexController extends Controller
         $og_image = url('public/uploads/logo/'.$info->logo);
          $link_icon = url('public/uploads/logo/'.$info->logo);
         //end seo
-    	
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
     	$theloai = Theloai::orderBy('id','DESC')->get();
     	$danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
 
-    	$tukhoa = Str::slug($data['tukhoa']);
-    	$truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->where('tentruyen','LIKE','%'.$tukhoa.'%')->orWhere('tomtat','LIKE','%'.$tukhoa.'%')->orWhere('tacgia','LIKE','%'.$tukhoa.'%')->paginate(12);
+    	$tukhoa_slug = Str::slug($tukhoa);
+    	$truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->where('tentruyen','LIKE','%'.$tukhoa_slug.'%')->orWhere('tomtat','LIKE','%'.$tukhoa_slug.'%')->orWhere('tacgia','LIKE','%'.$tukhoa_slug.'%')->paginate(12);
 
     	return view('pages.timkiem')->with(compact('danhmuc','truyen','theloai','slide_truyen','tukhoa','info','title','meta_desc','meta_keywords','url_canonical','og_image','link_icon'));
     }
@@ -403,12 +404,12 @@ class IndexController extends Controller
         $og_image = url('public/uploads/logo/'.$info->logo);
          $link_icon = url('public/uploads/logo/'.$info->logo);
         //end seo
-        
+
         $slide_truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
         $theloai = Theloai::orderBy('id','DESC')->get();
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
         $tags = explode("-", $tag);
-       
+
         $truyen = Truyen::with('thuocnhieudanhmuctruyen','thuocnhieutheloaitruyen')->where(
             function ($query) use($tags) {
             for ($i = 0; $i < count($tags); $i++){

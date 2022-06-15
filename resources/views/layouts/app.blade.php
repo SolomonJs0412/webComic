@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +11,8 @@
     <title>Admin Sách truyện</title>
 
     <!-- Scripts -->
-  
-     <link rel="icon" href="{{asset('public/uploads/logo/truyencreeo.jpg')}}" type="image/gif" sizes="16x16">
+
+    <link rel="icon" href="{{ asset('public/uploads/logo/truyencreeo.jpg') }}" type="image/gif" sizes="16x16">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,14 +21,18 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                   Admin Sách truyện
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        Truy cập giao diện người dùng
+                    </a></button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -54,18 +59,19 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -84,99 +90,86 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
-        <script type="text/javascript">
+    <script type="text/javascript">
         var url = '{{ env('APP_URL') }}';
 
-       var options = {
-            filebrowserImageBrowseUrl: url+'laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: url+'laravel-filemanager/upload?type=Images&_token=',
-            filebrowserBrowseUrl: url+'laravel-filemanager?type=Files',
-            filebrowserUploadUrl: url+'laravel-filemanager/upload?type=Files&_token='
-          };
-      
-        
-
+        var options = {
+            filebrowserImageBrowseUrl: url + 'laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: url + 'laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: url + 'laravel-filemanager?type=Files',
+            filebrowserUploadUrl: url + 'laravel-filemanager/upload?type=Files&_token='
+        };
     </script>
-  
+
     <script type="text/javascript">
-      
-        CKEDITOR.replace('noidung_chapter',options);
+        CKEDITOR.replace('noidung_chapter', options);
         CKEDITOR.replace('ckeditor_truyen');
         CKEDITOR.replace('ckeditor_sach');
-
-
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js">
-        
-    </script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     <script type="text/javascript">
- 
-    function ChangeToSlug()
-        {
+        function ChangeToSlug() {
             var slug;
-         
-            //Lấy text từ thẻ input title 
+
+            //Lấy text từ thẻ input title
             slug = document.getElementById("slug").value;
             slug = slug.toLowerCase();
             //Đổi ký tự có dấu thành không dấu
-                slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-                slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-                slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-                slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-                slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-                slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-                slug = slug.replace(/đ/gi, 'd');
-                //Xóa các ký tự đặt biệt
-                slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-                //Đổi khoảng trắng thành ký tự gạch ngang
-                slug = slug.replace(/ /gi, "-");
-                //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-                //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-                slug = slug.replace(/\-\-\-\-\-/gi, '-');
-                slug = slug.replace(/\-\-\-\-/gi, '-');
-                slug = slug.replace(/\-\-\-/gi, '-');
-                slug = slug.replace(/\-\-/gi, '-');
-                //Xóa các ký tự gạch ngang ở đầu và cuối
-                slug = '@' + slug + '@';
-                slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-                //In slug ra textbox có id “slug”
+            slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+            slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+            slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+            slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+            slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+            slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+            slug = slug.replace(/đ/gi, 'd');
+            //Xóa các ký tự đặt biệt
+            slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+            //Đổi khoảng trắng thành ký tự gạch ngang
+            slug = slug.replace(/ /gi, "-");
+            //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+            //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+            slug = slug.replace(/\-\-\-\-\-/gi, '-');
+            slug = slug.replace(/\-\-\-\-/gi, '-');
+            slug = slug.replace(/\-\-\-/gi, '-');
+            slug = slug.replace(/\-\-/gi, '-');
+            //Xóa các ký tự gạch ngang ở đầu và cuối
+            slug = '@' + slug + '@';
+            slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+            //In slug ra textbox có id “slug”
             document.getElementById('convert_slug').value = slug;
         }
-         
+    </script>
 
-   
-   
-</script>
+    <script type="text/javascript">
+        $('.truyennoibat').change(function() {
+            const truyennoibat = $(this).val();
+            const truyen_id = $(this).data('truyen_id');
+            var _token = $('input[name="_token"]').val();
 
-<script type="text/javascript">
- 
-    $('.truyennoibat').change(function(){
-        const truyennoibat = $(this).val();
-        const truyen_id = $(this).data('truyen_id');
-        var _token = $('input[name="_token"]').val();
-       
-        if(truyennoibat==0){
-            var thongbao = 'Thay đổi truyện mới thành công';
-        }else if(truyennoibat==1){
-            var thongbao = 'Thay đổi truyện nổi bật thành công';
-        }else{
-            var thongbao = 'Thay đổi truyện xem nhiều thành công';
-        }
-        $.ajax({
-            url:"{{url('/truyennoibat')}}",
-            method:"POST",
-            data:{truyennoibat:truyennoibat, truyen_id:truyen_id, _token:_token},
-            success:function(data)
-                {
-                    $('#thongbao').html('<span class="text text-alert">'+thongbao+'</span>');
+            if (truyennoibat == 0) {
+                var thongbao = 'Thay đổi truyện mới thành công';
+            } else if (truyennoibat == 1) {
+                var thongbao = 'Thay đổi truyện nổi bật thành công';
+            } else {
+                var thongbao = 'Thay đổi truyện xem nhiều thành công';
+            }
+            $.ajax({
+                url: "{{ url('/truyennoibat') }}",
+                method: "POST",
+                data: {
+                    truyennoibat: truyennoibat,
+                    truyen_id: truyen_id,
+                    _token: _token
+                },
+                success: function(data) {
+                    $('#thongbao').html('<span class="text text-alert">' + thongbao + '</span>');
                     //alert(thongbao);
-                }   
-        });
-       
-    })
-   
- 
+                }
+            });
 
-</script>
+        })
+    </script>
 </body>
+
 </html>
