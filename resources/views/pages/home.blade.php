@@ -52,7 +52,7 @@
 
 
 
-    <h3 class="title_truyen">MỚI CẬP NHẬT</h3>
+    <h3 class="title_truyen" style="line-height: 2">MỚI CẬP NHẬT</h3>
 
     <div class="album py-2 bg-light">
 

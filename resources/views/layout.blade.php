@@ -191,7 +191,7 @@
         @yield('content')
 
         <p class="float-right">
-            <button><a href="#">Cuộn lên đầu trang</a></button>
+            <button><a href="#" style="text-decoration: none">Cuộn lên đầu trang</a></button>
         </p>
         <!-- Remove the container if you want to extend the Footer to full width. -->
         <footer class="container my-5">

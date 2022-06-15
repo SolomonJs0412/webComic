@@ -12,6 +12,10 @@
         border: 3px solid #000;
         padding: 3px;
     }
+
+    #read {
+        display: block;
+    }
 </style>
 <div class="owl-carousel owl-theme mb-5">
 
@@ -39,7 +43,8 @@
                 <a href="{{ url('the-loai/' . $thuocloai->slug_theloai) }}"><span
                         class="badge badge-info">{{ $thuocloai->tentheloai }}</span></a>
             @endforeach
-            <a class="btn btn-danger btn-sm" href="{{ url('xem-truyen/' . $slide->slug_truyen) }}">Xem truyện</a>
+            <a class="btn btn-danger btn-sm" id="read" href="{{ url('xem-truyen/' . $slide->slug_truyen) }}">Xem
+                truyện</a>
 
         </div>
     @endforeach
