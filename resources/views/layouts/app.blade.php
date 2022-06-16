@@ -1,4 +1,10 @@
 <!doctype html>
+<style type="text/css">
+    #id {
+        color: rgba(0, 0, 0, 0.5);
+        display: none;
+    }
+</style>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -30,8 +36,8 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         Truy cập giao diện người dùng
                     </a></button>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -53,7 +59,7 @@
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li id="id" class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
@@ -65,13 +71,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -87,8 +93,11 @@
         </main>
     </div>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer>
+        < /scrip> <
+        script type = "text/javascript"
+        src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" >
+    </script>
     <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
     <script type="text/javascript">
         var url = '{{ env('APP_URL') }}';
