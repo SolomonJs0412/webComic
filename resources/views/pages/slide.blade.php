@@ -30,7 +30,7 @@
             </div>
             <img src="{{ asset('public/uploads/truyen/' . $slide->hinhanh) }}">
 
-            <h5>{{ $slide->tentruyen }}<br></h5>
+            <h5 style="height: 75px">{{ $slide->tentruyen }}<br></h5>
             <p><i class="fas fa-eye"></i>{{ $slide->views }}</p>
 
 

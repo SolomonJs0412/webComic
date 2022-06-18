@@ -33,9 +33,9 @@
 
             <div class="row">
                 @php
-
+                    
                     $mucluc = count($chapter);
-
+                    
                 @endphp
                 <div class="col-md-5">
 
@@ -409,8 +409,8 @@
 
 
 
-                    <div class="col-md-5" id="d"><img class="img img-responsive" width="100%" class="card-img-top"
-                            src="{{ asset('public/uploads/truyen/' . $xemnhieu->hinhanh) }}"
+                    <div class="col-md-5" id="d"><img class="img img-responsive" width="100%"
+                            class="card-img-top" src="{{ asset('public/uploads/truyen/' . $xemnhieu->hinhanh) }}"
                             alt="{{ $xemnhieu->tentruyen }}"></div>
 
                     <div class="col-md-7 sidebar">
@@ -435,8 +435,8 @@
 
 
 
-                    <div class="col-md-5" id="d"><img class="img img-responsive" width="100%" class="card-img-top"
-                            src="{{ asset('public/uploads/truyen/' . $tranh->hinhanh) }}"
+                    <div class="col-md-5" id="d"><img class="img img-responsive" width="100%"
+                            class="card-img-top" src="{{ asset('public/uploads/truyen/' . $tranh->hinhanh) }}"
                             alt="{{ $tranh->tentruyen }}">
                     </div>
 

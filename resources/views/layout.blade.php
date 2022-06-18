@@ -104,8 +104,8 @@
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/truyen-tranh') }}"><i
-                                class="fas fa-book"></i>Truyện tranh <span class="sr-only"></span></a>
+                        <a class="nav-link" href="{{ url('/truyen-tranh') }}"><i class="fas fa-book"></i>Truyện tranh
+                            <span class="sr-only"></span></a>
                     </li>
 
                     <li class="nav-item">
